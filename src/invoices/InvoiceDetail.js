@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 import {Person} from "../components/Person";
 
 import {apiGet} from "../utils/api";
@@ -58,6 +58,9 @@ const InvoiceDetail = () => {
                     {invoice.note}
                 </p>
             </div>
+            <Link to={"/invoices/edit/"+id} className="btn btn-success">
+                Uprav fakturu
+            </Link>
         </div>
     );
 };
