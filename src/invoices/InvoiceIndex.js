@@ -1,11 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import {apiDelete, apiGet} from "../utils/api";
+import { apiDelete, apiGet } from "../utils/api";
 
 import InvoiceTable from "./InvoiceTable";
+import InputField from "../components/InputField";
+import FlashMessage from "../components/FlashMessage";
+import InputSelect from "../components/InputSelect";
 
 const InvoiceIndex = () => {
+    /* {buyerID:"",sellerID:"",product:"",minPrice:"",maxPrice:"",limit:""} */
     const [invoices, setInvoices] = useState([]);
+    const [persons, setPersons] = useState([]);
+    const [params, SetParams] = useState({});
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Ahoj");
+        if (params) {
+            
+            apiGet("/api/invoices", params)
+                .then((data) => {
+                    setInvoices(data);
+                });
+        }
+    };
 
     const deleteInvoice = async (id) => {
         try {
@@ -19,12 +37,100 @@ const InvoiceIndex = () => {
 
     useEffect(() => {
         apiGet("/api/invoices").then((data) => setInvoices(data));
+        apiGet("/api/persons").then((data) => setPersons(data));
     }, []);
 
     return (
         <div>
-            <div></div>
             <h1>Seznam faktur</h1>
+            <hr />
+            <form onSubmit={handleSubmit}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm">
+                            <InputSelect
+                                required={false}
+                                mutiple={false}
+                                name="sellerID"
+                                size="1"
+                                label="Dodavatel"
+                                prompt="Zadejte dodavatele"
+                                items={persons}
+                                handleChange={(e) => {
+                                    console.log(e.target.value);
+                                    const valueField = e.target.value;
+                                    if (valueField != true) {
+                                        SetParams({ ...params, sellerID:  valueField});
+                                    } else {
+                                        delete params["sellerID"];
+                                    }
+                                    
+                                }}
+                            />
+                            <InputSelect
+                                required={false}
+                                mutiple={false}
+                                name="buyerID"
+                                size="1"
+                                label="Odběratel"
+                                prompt="Zadejte odběratel"
+                                items={persons}
+                                handleChange={(e) => {
+                                    SetParams({ ...params, buyerID: e.target.value?e.target.value:"" });
+                                }}
+                            />
+                            <InputField
+                                required={false}
+                                type="text"
+                                name="product"
+                                label="Zadejte nazev productu"
+                                prompt="produkt"
+                                handleChange={(e) => {
+                                    SetParams({ ...params, product: e.target.value?e.target.value:"" });
+                                }}
+                            />
+                        </div>
+                        <div className="col-sm">
+                            <InputField
+                                required={false}
+                                type="number"
+                                name="minPrice"
+                                label="Zadejte minimalní cenu"
+                                prompt="Minimalní cenu"
+                                handleChange={(e) => {
+                                    SetParams({ ...params, minPrice: e.target.value?e.target.value:"" });
+                                }}
+                            />
+                            <InputField
+                                required={false}
+                                type="number"
+                                name="maxPrice"
+                                label="Zadejte maximální cenu"
+                                prompt="Maximální cenu"
+                                handleChange={(e) => {
+                                    SetParams({ ...params, maxPrice: e.target.value?e.target.value:"" });
+                                }}
+                            />
+                            <InputField
+                                required={false}
+                                type="number"
+                                name="limit"
+                                label="Zadejte limit výpisu"
+                                prompt="Limit výpisu"
+                                handleChange={(e) => {
+                                    SetParams({ ...params, limit: e.target.value?e.target.value:"" });
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className="text-center">
+                    <br />
+                    <input type="submit" className="btn btn-primary" value="Vyfiltruj" />
+                    <hr />
+                </div>
+
+            </form>
             <InvoiceTable
                 deleteInvoice={deleteInvoice}
                 items={invoices}
