@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import Person from "../components/Person";
+import {Person} from "../components/Person";
 
 import {apiGet} from "../utils/api";
 
@@ -23,13 +23,40 @@ const InvoiceDetail = () => {
      
     return (
         <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <Person label="Dodavatel" item={invoice.seller} ></Person>
+            <div className="row">
+                <h1>Faktura (č. {invoice.invoiceNumber})</h1>
+                <hr />
+            </div>
+            <div className="row">
+                <div className="col-sm">
+                    <Person label="Dodavatel" item={invoice.seller} />
                 </div>
-                <div class="col-sm">
+                <div className="col-sm">
                     <Person label="Odběratel" item={invoice.buyer} />
                 </div>
+            </div>
+            <div className="row">
+                <hr />
+                <p>
+                    <strong>Datum vydaní:&nbsp;</strong>
+                    {invoice.issued}
+                </p>
+                <p>
+                    <strong>Datum splatnosti:&nbsp;</strong>
+                    {invoice.dueDate}
+                </p>
+                <p>
+                    <strong>Product:&nbsp;</strong>
+                    {invoice.product}
+                </p>
+                <p>
+                    <strong>Cena:&nbsp;</strong>
+                    {invoice.price}Kč ({invoice.vat}% DPH)
+                </p>
+                <p>
+                    <strong>Poznamka:&nbsp;</strong>
+                    {invoice.note}
+                </p>
             </div>
         </div>
     );

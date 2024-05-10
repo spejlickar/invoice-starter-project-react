@@ -33,16 +33,20 @@ const PersonTable = ({label, items, deletePerson}) => {
             <table className="table table-bordered">
                 <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Jméno</th>
+                    <th>Email</th>
+                    <th>Telefon</th>
                     <th colSpan={3}>Akce</th>
                 </tr>
                 </thead>
                 <tbody>
                 {items.map((item, index) => (
                     <tr key={index + 1}>
-                        <td>{index + 1}</td>
+                        <td>{item.identificationNumber}</td>
                         <td>{item.name}</td>
+                        <td>{item.mail}</td>
+                        <td>{item.telephone}</td>
                         <td>
                             <div className="btn-group">
                                 <Link
