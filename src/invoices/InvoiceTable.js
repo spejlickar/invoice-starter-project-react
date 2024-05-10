@@ -15,6 +15,7 @@ const InvoiceTable = ({label, items, deleteInvoice}) => {
                     <th>Číslo faktury</th>
                     <th>Dodavatel</th>
                     <th>Odběratel</th>
+                    <th>Produkt</th>
                     <th>Cena</th>
                     <th colSpan={3}>Akce</th>
                 </tr>
@@ -26,6 +27,7 @@ const InvoiceTable = ({label, items, deleteInvoice}) => {
                         <td>{item.invoiceNumber}</td>
                         <td>{item.seller.name}</td>
                         <td>{item.buyer.name}</td>
+                        <td>{item.product}</td>
                         <td>{item.price}</td>
                         <td>
                             <div className="btn-group">

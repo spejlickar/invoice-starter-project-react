@@ -12,10 +12,22 @@ const InvoiceIndex = () => {
     const [invoices, setInvoices] = useState([]);
     const [persons, setPersons] = useState([]);
     const [params, SetParams] = useState({});
+    const SetParamsByName = (name,value) =>{
+        if ((value == "true")||(value == "")) {
+            console.log("smaz");
+            delete params[name];
+        }  else {
+            console.log("Nastav");
+            params[name] = value;
+            
+        }
+        SetParams(params);
+        console.log(params);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Ahoj");
+        console.log("Posilam");
         if (params) {
             
             apiGet("/api/invoices", params)
@@ -56,16 +68,7 @@ const InvoiceIndex = () => {
                                 label="Dodavatel"
                                 prompt="Zadejte dodavatele"
                                 items={persons}
-                                handleChange={(e) => {
-                                    console.log(e.target.value);
-                                    const valueField = e.target.value;
-                                    if (valueField != true) {
-                                        SetParams({ ...params, sellerID:  valueField});
-                                    } else {
-                                        delete params["sellerID"];
-                                    }
-                                    
-                                }}
+                                handleChange={(e) => {SetParamsByName("sellerID",e.target.value)}}
                             />
                             <InputSelect
                                 required={false}
@@ -75,9 +78,7 @@ const InvoiceIndex = () => {
                                 label="Odběratel"
                                 prompt="Zadejte odběratel"
                                 items={persons}
-                                handleChange={(e) => {
-                                    SetParams({ ...params, buyerID: e.target.value?e.target.value:"" });
-                                }}
+                                handleChange={(e) => {SetParamsByName("buyerID",e.target.value)}}
                             />
                             <InputField
                                 required={false}
@@ -85,41 +86,36 @@ const InvoiceIndex = () => {
                                 name="product"
                                 label="Zadejte nazev productu"
                                 prompt="produkt"
-                                handleChange={(e) => {
-                                    SetParams({ ...params, product: e.target.value?e.target.value:"" });
-                                }}
+                                handleChange={(e) => {SetParamsByName("product",e.target.value)}}
                             />
                         </div>
                         <div className="col-sm">
                             <InputField
                                 required={false}
                                 type="number"
+                                min="0"
                                 name="minPrice"
                                 label="Zadejte minimalní cenu"
                                 prompt="Minimalní cenu"
-                                handleChange={(e) => {
-                                    SetParams({ ...params, minPrice: e.target.value?e.target.value:"" });
-                                }}
+                                handleChange={(e) => {SetParamsByName("minPrice",e.target.value)}}
                             />
                             <InputField
                                 required={false}
                                 type="number"
+                                min="0"
                                 name="maxPrice"
                                 label="Zadejte maximální cenu"
                                 prompt="Maximální cenu"
-                                handleChange={(e) => {
-                                    SetParams({ ...params, maxPrice: e.target.value?e.target.value:"" });
-                                }}
+                                handleChange={(e) => {SetParamsByName("maxPrice",e.target.value)}}
                             />
                             <InputField
                                 required={false}
                                 type="number"
                                 name="limit"
+                                min="1"
                                 label="Zadejte limit výpisu"
                                 prompt="Limit výpisu"
-                                handleChange={(e) => {
-                                    SetParams({ ...params, limit: e.target.value?e.target.value:"" });
-                                }}
+                                handleChange={(e) => {SetParamsByName("limit",e.target.value)}}
                             />
                         </div>
                     </div>
