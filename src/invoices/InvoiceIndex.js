@@ -48,9 +48,9 @@ const InvoiceIndex = () => {
     };
 
     useEffect(() => {
-        apiGet("/api/invoices").then((data) => setInvoices(data));
+        apiGet("/api/invoices",params).then((data) => setInvoices(data));
         apiGet("/api/persons").then((data) => setPersons(data));
-    }, []);
+    }, [params]);
 
     return (
         <div>
