@@ -13,6 +13,7 @@ const InvoiceIndex = () => {
     const [invoices, setInvoices] = useState([]);
     const [persons, setPersons] = useState([]);
     const [params, SetParams] = useState({});
+    
     const SetParamsByName = (name, value) => {
         if ((value == "true") || (value == "")) {
             console.log("smaz");
@@ -32,18 +33,6 @@ const InvoiceIndex = () => {
         }
         console.log(params);
     }
-
-    /* const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Posilam");
-        if (params) {
-            
-            apiGet("/api/invoices", params)
-                .then((data) => {
-                    setInvoices(data);
-                });
-        }
-    }; */
 
     const deleteInvoice = async (id) => {
         try {
@@ -70,7 +59,7 @@ const InvoiceIndex = () => {
             
             </div>
             <hr />
-            <div /* onSubmit={handleSubmit} */>
+            <div>
                 <div className="container">
                     <div className="row">
                         <div className="col-sm">

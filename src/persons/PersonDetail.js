@@ -30,7 +30,6 @@ import Country from "./Country";
 const PersonDetail = () => {
     const { id } = useParams();
     const [person, setPerson] = useState({});
-    const [isPerson, setIsPerson] = useState(false);
     const [invoicesSeller, setInvoicesSeller] = useState([]);
     const [invoicesBuyer, setInvoicesBuyer] = useState([]);
     const country = Country.CZECHIA === person.country ? "Česká republika" : "Slovensko";
@@ -39,40 +38,39 @@ const PersonDetail = () => {
         apiGet("/api/persons/" + id)
             .then((data) => {
                 setPerson(data)
-                setIsPerson(true);
+                /* setIsPerson(true); */
                 console.log("nacitam osobu")
                 console.log(data)
             });
     }, [id]);
 
     useEffect(() => {
-        if (person) {
+        /* if (person) { */
             apiGet("/api/identification/" + person.identificationNumber + "/sales")
                 .then((data) => {
                     setInvoicesSeller(data)
                     console.log("Nacitam faktury sales")
                     console.log(data)
                 })
-                apiGet("/api/identification/" + person.identificationNumber + "/purchases")
+            apiGet("/api/identification/" + person.identificationNumber + "/purchases")
                 .then((data) => {
                     setInvoicesBuyer(data)
-                    console.log("Nacitam faktury sales")
+                    console.log("Nacitam faktury purchases")
                     console.log(data)
                 })
-        }
+       /*  } */
     }, [person]);
 
-    if (!person) {
+    /* if (!person) {
         return (
             <div>nacitam</div>
         )
-    } else {
+    } else */ {
         return (
             <>
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-4">
-                            {/* <p>{invoicesSeller[0].product}</p> */}
                             <h1>Detail osoby</h1>
                             <hr />
                             <h3>{person.name} ({person.identificationNumber})</h3>
@@ -109,8 +107,8 @@ const PersonDetail = () => {
                             </p>
                         </div>
                         <div className="col-sm-8">
-                            <InvoiceList items={invoicesSeller} label = "Vydane faktury"/>
-                            <InvoiceList items={invoicesBuyer} label = "Prijate faktury"/>
+                            <InvoiceList items={invoicesSeller} label="Vydane faktury" />
+                            <InvoiceList items={invoicesBuyer} label="Prijate faktury" />
                         </div>
                     </div>
                 </div>
