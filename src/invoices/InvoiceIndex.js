@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { apiDelete, apiGet } from "../utils/api";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import InvoiceTable from "./InvoiceTable";
 import InputField from "../components/InputField";
@@ -13,24 +13,21 @@ const InvoiceIndex = () => {
     const [invoices, setInvoices] = useState([]);
     const [persons, setPersons] = useState([]);
     const [params, SetParams] = useState({});
-    
+
     const SetParamsByName = (name, value) => {
-        if ((value == "true") || (value == "")) {
+        if (value == "") {
             console.log("smaz");
-            delete params[name];
+            if (name in params) delete params[name];
         } else {
             console.log("Nastav");
             params[name] = value;
 
         }
         SetParams(params);
-        if (params) {
-
-            apiGet("/api/invoices", params)
-                .then((data) => {
-                    setInvoices(data);
-                });
-        }
+        apiGet("/api/invoices", params)
+            .then((data) => {
+                setInvoices(data);
+            });
         console.log(params);
     }
 
@@ -52,11 +49,11 @@ const InvoiceIndex = () => {
     return (
         <div>
             <div className="d-flex flex-row">
-            <div><h1>Faktury</h1></div>
-            <div><Link to={"/invoices/create"} className="btn btn-success">
-                Nová fatura
-            </Link></div>
-            
+                <div><h1>Faktury</h1></div>
+                <div><Link to={"/invoices/create"} className="btn btn-success">
+                    Nová fatura
+                </Link></div>
+
             </div>
             <hr />
             <div>
@@ -71,7 +68,7 @@ const InvoiceIndex = () => {
                                 label="Dodavatel"
                                 prompt="Zadejte dodavatele"
                                 items={persons}
-                                handleChange={(e) => { SetParamsByName("sellerID", e.target.value) }}
+                                handleChange={(e) => { SetParamsByName("sellerID", e.target.value=="true"?"":e.target.value) }}
                             />
                             <InputSelect
                                 required={false}
@@ -81,7 +78,7 @@ const InvoiceIndex = () => {
                                 label="Odběratel"
                                 prompt="Zadejte odběratel"
                                 items={persons}
-                                handleChange={(e) => { SetParamsByName("buyerID", e.target.value) }}
+                                handleChange={(e) => { SetParamsByName("buyerID", e.target.value=="true"?"":e.target.value) }}
                             />
                             <InputField
                                 required={false}
@@ -118,7 +115,7 @@ const InvoiceIndex = () => {
                                 min="1"
                                 label="Zadejte limit výpisu"
                                 prompt="Limit výpisu"
-                                handleChange={(e) => { SetParamsByName("limit", e.target.value) }}
+                                handleChange={(e) => { SetParamsByName("limit", e.target.value < 1?"":e.target.value) }}
                             />
                         </div>
                     </div>

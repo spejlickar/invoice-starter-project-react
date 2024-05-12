@@ -32,6 +32,7 @@ const PersonDetail = () => {
     const [person, setPerson] = useState({});
     const [invoicesSeller, setInvoicesSeller] = useState([]);
     const [invoicesBuyer, setInvoicesBuyer] = useState([]);
+    /* const [isPerson,setIsPerson] = useState(false); */
     const country = Country.CZECHIA === person.country ? "Česká republika" : "Slovensko";
 
     useEffect(() => {
@@ -44,28 +45,28 @@ const PersonDetail = () => {
             });
     }, [id]);
 
-    useEffect(() => {
-        /* if (person) { */
+     useEffect(() => {
+          if ("identificationNumber" in person) { 
             apiGet("/api/identification/" + person.identificationNumber + "/sales")
                 .then((data) => {
                     setInvoicesSeller(data)
-                    console.log("Nacitam faktury sales")
+                    console.log("Nacitam faktury seller")
                     console.log(data)
-                })
-            apiGet("/api/identification/" + person.identificationNumber + "/purchases")
+                });
+            apiGet("/api/identification/" + person.identificationNumber + "/buyer")
                 .then((data) => {
                     setInvoicesBuyer(data)
                     console.log("Nacitam faktury purchases")
                     console.log(data)
-                })
-       /*  } */
-    }, [person]);
+                });
+            }
+    }, [person]); 
 
-    /* if (!person) {
+    /*  if (!person) {
         return (
             <div>nacitam</div>
         )
-    } else */ {
+    } else */  {
         return (
             <>
                 <div className="container">
