@@ -2,8 +2,6 @@ import React from "react";
 
 
 const InvoiceList = (props) => {
-
-    if (props.items) {
         return (<div>
             <h3>{props.label}</h3>
             <table className="table table-bordered">
@@ -31,13 +29,6 @@ const InvoiceList = (props) => {
                 </tbody>
             </table>
         </div>)
-    } else {
-        return (
-            <div>nacitam</div>
-        )
-    }
-
-
 }
 
 export default InvoiceList;
