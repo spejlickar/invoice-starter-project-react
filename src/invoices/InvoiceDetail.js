@@ -22,9 +22,11 @@ const InvoiceDetail = () => {
     
      
     return (
-        <div class="container">
+        <div className="container">
             <div className="row">
-                <h1>Faktura (č. {invoice.invoiceNumber})</h1>
+                <h1>Faktura (č. {invoice.invoiceNumber}) <Link to={"/invoices/edit/"+id} className="btn btn-success">
+                Uprav
+            </Link></h1>
                 <hr />
             </div>
             <div className="row">
@@ -58,9 +60,7 @@ const InvoiceDetail = () => {
                     {invoice.note}
                 </p>
             </div>
-            <Link to={"/invoices/edit/"+id} className="btn btn-success">
-                Uprav fakturu
-            </Link>
+            
         </div>
     );
 };

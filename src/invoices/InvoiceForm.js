@@ -13,14 +13,14 @@ const InvoiceForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
     const [invoice, setInvoice] = useState({
-        invoiceNumber: null,
-        seller: {_id:0},
-        buyer: {_id:0},
-        issued: null,
-        dueDate: null,
+        invoiceNumber: "",
+        seller: {_id:""},
+        buyer: {_id:""},
+        issued: "",
+        dueDate: "",
         product: "",
-        price: 0,
-        vat: 0,
+        price: "",
+        vat: "",
         note: ""
     });
     const [persons,setPersons] = useState([]);

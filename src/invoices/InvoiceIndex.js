@@ -13,15 +13,16 @@ const InvoiceIndex = () => {
     const [invoices, setInvoices] = useState([]);
     const [persons, setPersons] = useState([]);
     const [params, SetParams] = useState({});
+    const [statistics, SetStatistics] = useState({});
 
     const SetParamsByName = (name, value) => {
-        console.log("pred:"+params);
+        console.log("pred:" + params);
         const preParams = JSON.stringify(params);
         if (value == "") {
-            console.log("smaz: "+name);
+            console.log("smaz: " + name);
             if (name in params) delete params[name];
         } else {
-            console.log("Nastav: "+name);
+            console.log("Nastav: " + name);
             params[name] = value;
         }
         if (JSON.stringify(params) != preParams) {
@@ -48,17 +49,15 @@ const InvoiceIndex = () => {
     useEffect(() => {
         apiGet("/api/invoices").then((data) => setInvoices(data));
         apiGet("/api/persons").then((data) => setPersons(data));
+        apiGet("/api/invoices/statistics").then((data) => SetStatistics(data));
     }, []);
 
     return (
         <div>
-            <div className="d-flex flex-row">
-                <div><h1>Faktury</h1></div>
-                <div><Link to={"/invoices/create"} className="btn btn-success">
-                    Nová fatura
-                </Link></div>
 
-            </div>
+            <h1>Faktury <Link to={"/invoices/create"} className="btn btn-success">
+                Nová fatura
+            </Link></h1>
             <hr />
             <div>
                 <div className="container">
@@ -134,7 +133,8 @@ const InvoiceIndex = () => {
             <InvoiceTable
                 deleteInvoice={deleteInvoice}
                 items={invoices}
-                label="Počet faktur:"
+                statistics = {statistics}
+                label="Počet zobrazených faktur:"
             />
         </div>
     );

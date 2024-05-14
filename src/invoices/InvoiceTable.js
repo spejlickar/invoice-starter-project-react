@@ -1,11 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-const InvoiceTable = ({label, items, deleteInvoice}) => {
+const InvoiceTable = ({label, items, deleteInvoice, statistics}) => {
     return (
         <div>
             <p>
-                {label} {items.length}
+                {label} <strong>{items.length}</strong>    (Součet všech faktur: <strong>{"invoicesCount" in statistics?statistics.invoicesCount:"" }</strong>, 
+                                        součet cen: <strong>{"allTimeSum" in statistics?statistics.allTimeSum:"" }Kč</strong>,
+                                        součet cen za letošní rok: <strong>{"currentYearSum" in statistics?statistics.currentYearSum:"" }Kč</strong>)
             </p>
 
             <table className="table table-bordered">

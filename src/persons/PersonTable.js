@@ -73,9 +73,6 @@ const PersonTable = ({label, items, deletePerson}) => {
                 ))}
                 </tbody>
             </table>
-            <Link to={"/persons/create"} className="btn btn-success">
-                Nová osoba
-            </Link>
         </div>
     );
 };

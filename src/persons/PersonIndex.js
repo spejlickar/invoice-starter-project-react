@@ -21,6 +21,7 @@
  */
 
 import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 import {apiDelete, apiGet} from "../utils/api";
 
@@ -46,7 +47,9 @@ const PersonIndex = () => {
     return (
         <div>
             <div></div>
-            <h1>Seznam osob</h1>
+            <h1>Osoby <Link to={"/persons/create"} className="btn btn-success">
+                Nová osoba
+            </Link></h1>
             <PersonTable
                 deletePerson={deletePerson}
                 items={persons}
