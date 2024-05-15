@@ -71,7 +71,7 @@ const InvoiceIndex = () => {
                                 label="Dodavatel"
                                 prompt="Zadejte dodavatele"
                                 items={persons}
-                                handleChange={(e) => { SetParamsByName("sellerID", e.target.value == "true" ? "" : e.target.value) }}
+                                handleChange={(e) => { SetParamsByName("sellerID", e.target.value) }}
                             />
                             <InputSelect
                                 required={false}
@@ -81,7 +81,7 @@ const InvoiceIndex = () => {
                                 label="Odběratel"
                                 prompt="Zadejte odběratel"
                                 items={persons}
-                                handleChange={(e) => { SetParamsByName("buyerID", e.target.value == "true" ? "" : e.target.value) }}
+                                handleChange={(e) => { SetParamsByName("buyerID", e.target.value ) }}
                             />
                             <InputField
                                 required={false}

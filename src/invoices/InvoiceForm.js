@@ -82,26 +82,26 @@ const InvoiceForm = () => {
                     }}
                 />
                 <InputSelect
-                    required={id}
+                    required={true}
                     mutiple={false}
                     name="seller"
                     size="1"
                     label="Dodavatel"
                     prompt="Zadejte dodavatele"
-                    value={invoice.seller._id}
+                    value={id?invoice.seller._id:""}
                     items={persons}
                     handleChange={(e) => {
                         setInvoice({...invoice, seller:{...invoice.seller,_id:e.target.value}});
                     }}
                 />
                 <InputSelect
-                    required={id}
+                    required={true}
                     mutiple={false}
                     name="buyer"
                     size="1"
                     label="Odběratel"
                     prompt="Zadejte odběratele"
-                    value={invoice.buyer._id}
+                    value={id?invoice.buyer._id:""}
                     items={persons}
                     handleChange={(e) => {
                         setInvoice({...invoice, buyer:{...invoice.buyer,_id:e.target.value}});
