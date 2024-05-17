@@ -30,7 +30,7 @@ const InvoiceTable = ({label, items, deleteInvoice, statistics}) => {
                         <td>{item.seller.name}</td>
                         <td>{item.buyer.name}</td>
                         <td>{item.product}</td>
-                        <td>{item.price}</td>
+                        <td><strong>{item.price} Kč</strong></td>
                         <td>
                             <div className="btn-group">
                                 <Link

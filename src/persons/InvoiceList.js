@@ -23,7 +23,7 @@ const InvoiceList = (props) => {
                             <td>{item.seller.name}</td>
                             <td>{item.buyer.name}</td>
                             <td>{item.product}</td>
-                            <td>{item.price}</td>
+                            <td>{item.price} Kč</td>
                         </tr>
                     ))}
                 </tbody>

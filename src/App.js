@@ -43,7 +43,7 @@ export function App() {
     <Router>
       <div className="container">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <ul className="navbar-nav mr-auto d-flex flex-row">
+          <ul className="navbar-nav mr-auto">
             <li className="nav-item ">
               <Link to={"/persons"} className="nav-link">
                 Osoby

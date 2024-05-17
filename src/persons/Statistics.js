@@ -27,7 +27,7 @@ const Statistics = ()=>{
                         <tr key={index + 1}>
                             <td>{index + 1}</td>
                             <td>{item.personName}</td>
-                            <td>{item.revenue}</td>
+                            <td><strong>{item.revenue} Kč</strong></td>
                         </tr>
                     ))}
                 </tbody>
