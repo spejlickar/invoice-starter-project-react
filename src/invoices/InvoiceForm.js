@@ -37,7 +37,8 @@ const InvoiceForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        /* console.log("invoice pred poslanim:");
+        console.log(invoice); */
         (id ? apiPut("/api/invoices/" + id, invoice) : apiPost("/api/invoices", {...invoice,seller:{_id:invoice.seller._id},buyer:{_id:invoice.buyer._id}}))
             .then((data) => {
                 setSent(true);
@@ -73,7 +74,7 @@ const InvoiceForm = () => {
                     required={true}
                     type="number"
                     name="invoiceNumberName"
-                    min="6"
+                    min="1000"
                     label="Číslo faktury"
                     prompt="Zadejte číslo faktury"
                     value={invoice.invoiceNumber}
@@ -88,7 +89,7 @@ const InvoiceForm = () => {
                     size="1"
                     label="Dodavatel"
                     prompt="Zadejte dodavatele"
-                    value={id?invoice.seller._id:""}
+                    value={invoice.seller._id}
                     items={persons}
                     handleChange={(e) => {
                         setInvoice({...invoice, seller:{...invoice.seller,_id:e.target.value}});
@@ -101,7 +102,7 @@ const InvoiceForm = () => {
                     size="1"
                     label="Odběratel"
                     prompt="Zadejte odběratele"
-                    value={id?invoice.buyer._id:""}
+                    value={invoice.buyer._id}
                     items={persons}
                     handleChange={(e) => {
                         setInvoice({...invoice, buyer:{...invoice.buyer,_id:e.target.value}});

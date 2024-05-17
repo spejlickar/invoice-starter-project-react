@@ -22,12 +22,12 @@ export function InputSelect(props) {
       >
         {required ? (
           /* prázdná hodnota zakázaná (pro úpravu záznamu) */
-          <option disabled value=""/* {emptySelected} */>
+          <option disabled value="" /* {emptySelected} */>
             {props.prompt}
           </option>
         ) : (
           /* prázdná hodnota povolená (pro filtrování přehledu) */
-          <option key={0} value=""/* {emptySelected} */>
+          <option key={0} value="" /* {emptySelected} */>
             ({props.prompt})
           </option>
         )}

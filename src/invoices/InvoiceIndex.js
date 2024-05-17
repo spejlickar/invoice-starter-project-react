@@ -89,7 +89,7 @@ const InvoiceIndex = () => {
                                 name="product"
                                 label="Zadejte nazev productu"
                                 prompt="produkt"
-                                handleChange={(e) => { SetParamsByName("product", e.target.value) }}
+                                handleChange={(e) => { SetParamsByName("product", e.target.value.trim()) }}
                             />
                         </div>
                         <div className="col-sm">
