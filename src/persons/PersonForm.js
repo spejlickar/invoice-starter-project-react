@@ -110,6 +110,7 @@ const PersonForm = () => {
                     required={true}
                     type="text"
                     name="identificationNumber"
+                    disabled={id}
                     min="3"
                     label="IČO"
                     prompt="Zadejte IČO"

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import InvoiceTable from "./InvoiceTable";
 import InputField from "../components/InputField";
-import FlashMessage from "../components/FlashMessage";
 import InputSelect from "../components/InputSelect";
 
 const InvoiceIndex = () => {
@@ -48,7 +47,7 @@ const InvoiceIndex = () => {
 
     useEffect(() => {
         apiGet("/api/invoices").then((data) => setInvoices(data));
-        apiGet("/api/persons").then((data) => setPersons(data));
+        apiGet("/api/persons/all").then((data) => setPersons(data));
         apiGet("/api/invoices/statistics").then((data) => SetStatistics(data));
     }, []);
 

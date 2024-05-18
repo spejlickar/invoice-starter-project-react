@@ -37,8 +37,6 @@ const InvoiceForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        /* console.log("invoice pred poslanim:");
-        console.log(invoice); */
         (id ? apiPut("/api/invoices/" + id, invoice) : apiPost("/api/invoices", {...invoice,seller:{_id:invoice.seller._id},buyer:{_id:invoice.buyer._id}}))
             .then((data) => {
                 setSent(true);

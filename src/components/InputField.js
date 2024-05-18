@@ -45,6 +45,7 @@ export function InputField(props) {
           name={props.name}
           value={props.value}
           onChange={props.handleChange}
+          disabled={props.disabled}
         />
       )}
     </div>

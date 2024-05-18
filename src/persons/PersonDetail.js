@@ -21,7 +21,7 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { useParams,Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { apiGet } from "../utils/api";
 import InvoiceList from "./InvoiceList";
@@ -65,9 +65,9 @@ const PersonDetail = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-4">
-                        <h1>Detajl Osoby <Link to={"/persons/edit/"+id} className="btn btn-success">
-                Uprav
-            </Link></h1>
+                        <h1>Detajl Osoby <Link to={"/persons/edit/" + id} className="btn btn-success">
+                            Uprav
+                        </Link></h1>
                         <hr />
                         <h3>{person.name} ({person.identificationNumber})</h3>
                         <p>

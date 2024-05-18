@@ -44,17 +44,17 @@ export function App() {
       <div className="container">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item ">
+            <li className="nav-item">
               <Link to={"/persons"} className="nav-link">
                 Osoby
               </Link>
             </li>
-            <li className="nav-item ">
+            <li className="nav-item">
               <Link to={"/invoices"} className="nav-link">
                 Faktury
               </Link>
             </li>
-            <li className="nav-item ">
+            <li className="nav-item">
               <Link to={"/statistics"} className="nav-link">
                 Statistiky
               </Link>
